@@ -28,21 +28,21 @@
 
     <template>
 
-      <split-pane v-on:resize="resize" :min-percent='20' split="vertical">
+      <split-pane v-on:resize="resize" :min-percent='20' :split="v ? 'vertical' : 'horizontal'">
         <template slot="paneL">
           A
         </template>
 
         <template slot="paneR">
 
-          <split-pane split="horizontal">
+          <split-pane :split="!v ? 'vertical' : 'horizontal'">
 
             <template slot="paneL">
              B
             </template>
 
             <template slot="paneR">
-              <split-pane v-on:resize="resize" split="vertical" :default-percent='30'>
+              <split-pane v-on:resize="resize" :split="v ? 'vertical' : 'horizontal'" :default-percent='30'>
 
                 <template slot="paneL">
                  C
@@ -67,6 +67,11 @@
   <script>
     var Main = {
       name: 'test',
+      data() {
+        return {
+          v: true
+        }
+      },
       methods: {
         resize() {
           console.log('resize')

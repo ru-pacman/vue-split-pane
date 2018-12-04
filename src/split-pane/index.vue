@@ -44,6 +44,12 @@
       },
       cursor() {
         return this.active ? 'col-resize' : ''
+      },
+      type() {
+        return this.split === 'vertical' ? 'width' : 'height'
+      },
+      resizeType() {
+        return this.split === 'vertical' ? 'left' : 'top'
       }
     },
     data() {
@@ -51,9 +57,7 @@
         active: false,
         hasMoved: false,
         height: null,
-        percent: this.defaultPercent,
-        type: this.split === 'vertical' ? 'width' : 'height',
-        resizeType: this.split === 'vertical' ? 'left' : 'top'
+        percent: this.defaultPercent
       }
     },
     methods: {
